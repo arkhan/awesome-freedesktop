@@ -47,11 +47,7 @@ the rest of the items.
 
   -- applications menu
   require('freedesktop.utils')
-<<<<<<< HEAD
   freedesktop.utils.terminal = terminal -- default: "xterm"
-=======
-  freedesktop.utils.terminal = terminal  -- default: "xterm"
->>>>>>> e514e742864495f23fd725f8c596f41a01d67795
   freedesktop.utils.icon_theme = 'gnome' -- look inside /usr/share/icons/, default: nil (don't use icon theme)
   require('freedesktop.menu')
   -- require("debian.menu")
@@ -76,8 +72,7 @@ the rest of the items.
   -- desktop icons
   require('freedesktop.desktop')
   for s = 1, screen.count() do
-        freedesktop.desktop.add_applications_icons({screen = s, showlabels = true})
-        freedesktop.desktop.add_dirs_and_files_icons({screen = s, showlabels = true})
+        freedesktop.desktop.add_desktop_icons({screen = s, showlabels = true})
   end
 
 License

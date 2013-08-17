@@ -84,7 +84,7 @@ function new(arg)
         { "Other", programs["Other"], utils.lookup_icon({ icon = 'applications-other' }) },
         { "Settings", programs["Settings"], utils.lookup_icon({ icon = 'preferences-desktop' }) },
         { "System Tools", programs["System"], utils.lookup_icon({ icon = 'applications-system' }) },
-        { "All", programs["All"] },
+        --{ "All", programs["All"] },
     }
 
     -- Removing empty entries from menu

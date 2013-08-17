@@ -19,23 +19,7 @@ Main features
 Icon themes
 ===========
 
-You can choose any icon theme that's installed in /usr/share/icons/. To define
-your icon theme, you can do the following before you require
-"freedesktop.menu", but after you require "freedesktop.utils" (see example
-usage below):
-
-  freedesktop.utils.icon_theme = 'gnome'
-
-You can also use more than one icon theme, by assigning a Lua table containing
-a list of themes.
-
-  freedesktop.utils.icon_theme = { 'Mist', 'gnome' }
-
-When you use a list of icon themes, icons will be looked up in themes list in
-the order you specified. The first theme containing the desired icon will be
-used (that happens once for each icon). Note that if the icon theme already
-specifies another icon theme as fallback, that is already taken care of for
-you.
+Gtk icon theme will be selected
 
 Usage example
 =============
@@ -45,12 +29,11 @@ You can use the freedesktop module in your awesome configuration
 you can also uncomment the two lines that insert the Debian menu together with
 the rest of the items.
 
+  local freedesktop = require('freedesktop') -- put this in the top of your configuration
+
   -- applications menu
-  require('freedesktop.utils')
   freedesktop.utils.terminal = terminal -- default: "xterm"
-  freedesktop.utils.icon_theme = 'gnome' -- look inside /usr/share/icons/, default: nil (don't use icon theme)
-  require('freedesktop.menu')
-  -- require("debian.menu")
+  -- require("debian.menu") -- if you are using debian
 
   menu_items = freedesktop.menu.new()
   myawesomemenu = {
@@ -70,7 +53,6 @@ the rest of the items.
 
 
   -- desktop icons
-  require('freedesktop.desktop')
   for s = 1, screen.count() do
         freedesktop.desktop.add_desktop_icons({screen = s, showlabels = true})
   end

@@ -47,7 +47,11 @@ the rest of the items.
 
   -- applications menu
   require('freedesktop.utils')
+<<<<<<< HEAD
   freedesktop.utils.terminal = terminal -- default: "xterm"
+=======
+  freedesktop.utils.terminal = terminal  -- default: "xterm"
+>>>>>>> e514e742864495f23fd725f8c596f41a01d67795
   freedesktop.utils.icon_theme = 'gnome' -- look inside /usr/share/icons/, default: nil (don't use icon theme)
   require('freedesktop.menu')
   -- require("debian.menu")
@@ -82,5 +86,8 @@ License
 Copyright © 2009-2011 Antonio Terceiro <terceiro@softwarelivre.org>
 
 This code is licensed under the same terms as Awesome itself.
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> e514e742864495f23fd725f8c596f41a01d67795

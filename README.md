@@ -29,32 +29,32 @@ You can use the freedesktop module in your awesome configuration
 you can also uncomment the two lines that insert the Debian menu together with
 the rest of the items.
 
-  local freedesktop = require('freedesktop') -- put this in the top of your configuration
+    local freedesktop = require('freedesktop') -- put this in the top of your configuration
+    
+    -- applications menu
+    freedesktop.utils.terminal = terminal -- default: "xterm"
+    -- require("debian.menu") -- if you are using debian
+    
+    menu_items = freedesktop.menu.new()
+    myawesomemenu = {
+       { "manual", terminal .. " -e man awesome", freedesktop.utils.lookup_icon({ icon = 'help' }) },
+       { "edit config", editor_cmd .. " " .. awful.util.getdir("config") .. "/rc.lua", freedesktop.utils.lookup_icon({ icon = 'package_settings' }) },
+       { "restart", awesome.restart, freedesktop.utils.lookup_icon({ icon = 'gtk-refresh' }) },
+       { "quit", awesome.quit, freedesktop.utils.lookup_icon({ icon = 'gtk-quit' }) }
+    }
+    table.insert(menu_items, { "awesome", myawesomemenu, beautiful.awesome_icon })
+    table.insert(menu_items, { "open terminal", terminal, freedesktop.utils.lookup_icon({icon = 'terminal'}) })
+    -- table.insert(menu_items, { "Debian", debian.menu.Debian_menu.Debian, freedesktop.utils.lookup_icon({ icon = 'debian-logo' }) })
+    
+    mymainmenu = awful.menu({ items = menu_items })
+    
+    mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon, menu = mymainmenu })
 
-  -- applications menu
-  freedesktop.utils.terminal = terminal -- default: "xterm"
-  -- require("debian.menu") -- if you are using debian
 
-  menu_items = freedesktop.menu.new()
-  myawesomemenu = {
-     { "manual", terminal .. " -e man awesome", freedesktop.utils.lookup_icon({ icon = 'help' }) },
-     { "edit config", editor_cmd .. " " .. awful.util.getdir("config") .. "/rc.lua", freedesktop.utils.lookup_icon({ icon = 'package_settings' }) },
-     { "restart", awesome.restart, freedesktop.utils.lookup_icon({ icon = 'gtk-refresh' }) },
-     { "quit", awesome.quit, freedesktop.utils.lookup_icon({ icon = 'gtk-quit' }) }
-  }
-  table.insert(menu_items, { "awesome", myawesomemenu, beautiful.awesome_icon })
-  table.insert(menu_items, { "open terminal", terminal, freedesktop.utils.lookup_icon({icon = 'terminal'}) })
-  -- table.insert(menu_items, { "Debian", debian.menu.Debian_menu.Debian, freedesktop.utils.lookup_icon({ icon = 'debian-logo' }) })
-
-  mymainmenu = awful.menu({ items = menu_items })
-
-  mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon, menu = mymainmenu })
-
-
-  -- desktop icons
-  for s = 1, screen.count() do
-        freedesktop.desktop.add_desktop_icons({screen = s, showlabels = true})
-  end
+    -- desktop icons
+    for s = 1, screen.count() do
+          freedesktop.desktop.add_desktop_icons({screen = s, showlabels = true})
+    end
 
 License
 =======

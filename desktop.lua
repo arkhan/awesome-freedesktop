@@ -24,7 +24,7 @@ function add_icon(settings)
     if totheight == 0 then return end
 
     if current_pos[s].y + totheight > capi.screen[s].geometry.height - 40 then
-        current_pos[s].x = current_pos[s].x - labelsize.width - iconsize.width - margin.x
+        current_pos[s].x = current_pos[s].x + labelsize.width + iconsize.width + margin.x
         current_pos[s].y = 40
     end
 
@@ -95,7 +95,7 @@ function add_dirs_and_files_icons(arg)
                 label = arg.showlabels and file.filename or nil,
                 icon = file.icon,
                 screen = arg.screen,
-                click = function () awful.util.spawn(arg.open_with .. ' ' .. file.path) end
+                click = function () awful.util.spawn(arg.open_with .. ' "' .. file.path .. '"') end
             })
         end
     end

@@ -195,8 +195,8 @@ end
 -- @return A table with file entries.
 function parse_desktop_file(arg)
 
-    local function check_nil(f, v) 
-        -- Almost the same as 
+    local function check_nil(f, v)
+        -- Almost the same as
         -- return f and f or v
         -- but it will return false if f = false
         if f == nil then return v else return f end
@@ -217,7 +217,7 @@ function parse_desktop_file(arg)
                 for key, value in line:gmatch("(%w+)=(.+)") do
                     result[group][key] = value
                 end
-            end 
+            end
         end
         
         return result

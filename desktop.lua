@@ -2,10 +2,18 @@ local awful = require("awful")
 local wibox = require("wibox")
 local table = table
 local ipairs = ipairs
+local os = os
 local utils = require("freedesktop.utils")
 local capi = { screen = screen }
 
 module("freedesktop.desktop")
+
+config = {
+      computer = true,
+      home = true,
+      network = true,
+      trash = true,
+ }
 
 local current_pos = {}
 local iconsize = { width = 48, height = 48 }
@@ -53,6 +61,39 @@ function add_icon(settings)
     current_pos[s].y = current_pos[s].y + labelsize.height + margin.y
 end
 
+
+function add_base_icons(arg)
+    arg.open_with = arg.open_with or 'xdg-open' or 'thunar'
+	if config.computer then
+		add_icon({
+			label = 'Computer',
+			icon = utils.lookup_icon({ icon='computer' }),
+			screen = arg.screen,
+			click = function () awful.util.spawn(arg.open_with .. ' "computer://"') end
+		}) end
+	if config.home then
+		add_icon({
+			label = 'Home',
+			icon = utils.lookup_icon({ icon='user-home' }),
+			screen = arg.screen,
+			click = function () awful.util.spawn(arg.open_with .. ' ' .. os.getenv("HOME")) end
+		}) end
+	if config.network then
+		add_icon({
+			label = 'Network',
+			icon = utils.lookup_icon({ icon='network-workgroup' }),
+			screen = arg.screen,
+			click = function () awful.util.spawn(arg.open_with .. ' "network://"') end
+		}) end
+	if config.trash then
+		add_icon({
+			label = 'Trash',
+			icon = utils.lookup_icon({ icon='user-trash' }),
+			screen = arg.screen,
+			click = function () awful.util.spawn(arg.open_with .. ' "trash://"') end
+		}) end
+end
+
 --- Adds subdirs and files icons to the desktop
 -- @param dir The directory to parse, (default is ~/Desktop)
 -- @param showlabels Shows icon captions (default is false)
@@ -81,7 +122,7 @@ end
 -- @param showlabels Shows icon captions
 -- @param open_with The program to use to open clicked files and dirs (i.e. xdg_open, thunar, etc.)
 function add_dirs_and_files_icons(arg)
-    arg.open_with = arg.open_with or 'thunar'
+    arg.open_with = arg.open_with or 'xdg-open' or 'thunar'
     for i, file in ipairs(utils.parse_dirs_and_files({
         dir = arg.dir or '~/Desktop/',
         icon_sizes = {
@@ -102,6 +143,7 @@ function add_dirs_and_files_icons(arg)
 end
 
 function add_desktop_icons(args)
+    add_base_icons(args)
     add_applications_icons(args)
     add_dirs_and_files_icons(args)
 end

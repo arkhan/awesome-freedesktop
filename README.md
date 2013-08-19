@@ -52,6 +52,12 @@ the rest of the items.
 
 
     -- desktop icons
+
+    -- freedesktop.desktop.config.computer = false -- to disabble computer icon
+    -- freedesktop.desktop.config.home = false -- to disabble home icon
+    -- freedesktop.desktop.config.network = false -- to disabble network icon
+    -- freedesktop.desktop.config.trash = false -- to disabble trash icon
+
     for s = 1, screen.count() do
           freedesktop.desktop.add_desktop_icons({screen = s, showlabels = true})
     end

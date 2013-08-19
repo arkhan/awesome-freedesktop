@@ -59,8 +59,11 @@ the rest of the items.
     -- freedesktop.desktop.config.trash = false -- to disabble trash icon
 
     for s = 1, screen.count() do
-          freedesktop.desktop.add_desktop_icons({screen = s, showlabels = true})
+          freedesktop.desktop.add_desktop_icons({screen = s, showlabels = true,
+          open_with = 'thunar' }) -- replace thunar with xdg-open if you installed `xdg-utils/xdg-utils-mimeo` or with your best file opener
     end
+
+NOTE: install `thunar` & `xdg-utils-mimeo` from AUR -- if you want !
 
 License
 =======

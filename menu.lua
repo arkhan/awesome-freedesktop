@@ -7,7 +7,7 @@ local os = os
 local ipairs = ipairs
 local pairs = pairs
 
-module("freedesktop.menu")
+local module = {}
 
 all_menu_dirs = {
     '/usr/share/applications/',
@@ -20,7 +20,7 @@ show_generic_name = false
 --- Create menus for applications
 -- @param menu_dirs A list of application directories (optional).
 -- @return A prepared menu w/ categories
-function new(arg)
+function module.new(arg)
     -- the categories and their synonyms where shamelessly copied from lxpanel
     -- source code.
     local programs = {}
@@ -98,3 +98,5 @@ function new(arg)
 
     return programs[config.category] or cleanedMenu
 end
+
+return module

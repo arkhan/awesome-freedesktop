@@ -253,6 +253,9 @@ function module.parse_desktop_file(arg)
     end
 
     if program.Exec then
+        if program.Name == nil then
+            program.Name = '['.. arg.file:match("([^/]+)%.desktop$") ..']'
+        end
         local cmdline = program.Exec:gsub('%%c', program.Name)
         cmdline = cmdline:gsub('%%[fmuFMU]', '')
         cmdline = cmdline:gsub('%%k', program.file)
